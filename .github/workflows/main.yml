@@ -18,8 +18,8 @@ jobs:
         with:
           zig-version: latest # 或指定特定版本，例如 '0.10.0'
 
-      - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libc6:i386 libstdc++6:i386 zlib1g:i386
+      #- name: Install dependencies
+       # run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libc6:i386 libstdc++6:i386 zlib1g:i386
 
       - name: Create build directory
         run: mkdir -p build
