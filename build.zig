@@ -1,6 +1,9 @@
 const std = @import("std");
-const builder = std.build.Builder;
+// const builder = std.build.Builder;
+// 将 `const builder = std.build.Builder;` 替换为:
+const builder = @import("build").Builder;
 
+// ... 其他代码 ...
 pub fn build(b: *builder.Builder) void {
     // 设置目标平台和架构
     const target = std.Target.Android.aarch64;
