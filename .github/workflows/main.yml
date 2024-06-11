@@ -26,7 +26,7 @@ jobs:
 
       - name: Build for Android ARM32
         working-directory: build
-        run: zig build -target arm-linux-androideabi main.zig
+        run: zig build main.zig
 
       # 可选：添加其他构建步骤，例如运行测试
 
