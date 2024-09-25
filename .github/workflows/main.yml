@@ -1,4 +1,4 @@
-name: Build Android ARM32
+name: main
 
 on:
   push:
@@ -8,31 +8,24 @@ jobs:
   build-project:
     name: Build project
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
 
-      - name: Install Zig
-        uses: goto-bus-stop/setup-zig@v2
-        with:
-          zig-version: latest # 或指定特定版本，例如 '0.10.0'
-
-      #- name: Install dependencies
-       # run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libc6:i386 libstdc++6:i386 zlib1g:i386
-
-      - name: Create build directory
-        run: mkdir -p build && zig init
-
-      - name: Build for Android ARM32
-        working-directory: build
-        run: zig build main.zig
-
-      # 可选：添加其他构建步骤，例如运行测试
+      - name: Build Obfuscator
+        run: |
+          git clone https://github.com/heroims/obfuscator.git
+          cd obfuscator
+          git checkout llvm-9.0.1
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_INCLUDE_TESTS=OFF ..
+          make -j2
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: build-arm32
-          path: build/ # 请根据实际情况修改路径
-          retention-days: 3 
+          name: build
+          path: obfuscator/build
+          retention-days: 30
