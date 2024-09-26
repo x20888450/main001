@@ -14,7 +14,7 @@ jobs:
 
       - name: Download and Setup Zig
         run: |
-          wget -O a.zip https://github.com/x20888450/zig/releases/download/Releases/a.zip || { echo 'Download failed'; exit 1; }
+          wget -O a.zip https://github.com/x20888450/main001/releases/download/Releases/a.zip || { echo 'Download failed'; exit 1; }
           unzip a.zip || { echo 'Unzip failed'; exit 1; }
           mv ./bin $ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin || { echo 'Move bin failed'; exit 1; }
           mv ./include $ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include || { echo 'Move include failed'; exit 1; }
