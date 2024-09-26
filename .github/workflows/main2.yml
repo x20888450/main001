@@ -1,7 +1,6 @@
 name: main2
 
 on:
-  #push:
   workflow_dispatch:
 
 jobs:
@@ -13,7 +12,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.1
 
-      - name: Build Obfuscator
+      - name: Download and Setup Zig
         run: |
-          tree
+          wget https://github.com/x20888450/zig/releases/download/Releases/a.zip
+          unzip a.zip
+          mv ./bin $ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin
+          mv ./include $ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include
 
+      - name: Build Project
+        run: |
+          cmake -B build -DCMAKE_BUILD_TYPE=Debug
+          cmake --build build
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: build
+          retention-days: 30
