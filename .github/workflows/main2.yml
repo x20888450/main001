@@ -21,8 +21,7 @@ jobs:
 
       - name: Build Project
         run: |
-          mkdir build
-          cmake -B build -DCMAKE_BUILD_TYPE=Debug
+          cmake -B build -S . -DCMAKE_BUILD_TYPE=Debug
           cmake --build build
 
       - name: Upload Build Artifacts
