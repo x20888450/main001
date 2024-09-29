@@ -21,7 +21,7 @@ jobs:
 
       - name: Build Project
         run: |
-          cmake -B build
+          cmake -B build --preset arm
           cmake --build build
 
       - name: Upload Build Artifacts
